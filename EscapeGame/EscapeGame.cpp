@@ -82,63 +82,7 @@ void Output(int **Maze, PPOINT_t pPlayerPos, int SIZE_X, int SIZE_Y) {
 	}
 }
 
-void MoveUp(int **Maze, PPOINT_t pPlayerPos) {
-	//올라가는 건 y값을 조절
-	if (pPlayerPos->y - 1 >= 0) {//0보다 작은데 위로 올라가면 안됨
-								 //벽인지 아닌지 체크
-		if (Maze[pPlayerPos->x][pPlayerPos->y - 1] != 0) {
-			--pPlayerPos->y;
-		}
-	}
-}
 
-void MoveDown(int **Maze, PPOINT_t pPlayerPos, int SIZE_Y) {
-	//y값은 아래로 내려갈수록 값이 커지니까 +1
-	if (pPlayerPos->y + 1 < SIZE_Y-1) { //19까지만 가야하고 그 이상은 못가도록 설정
-								  //벽인지 아닌지 체크
-		if (Maze[pPlayerPos->x][pPlayerPos->y+1] != 0) {//벽이 아니면 간다
-			++pPlayerPos->y;
-		}
-	}
-}
-
-void MoveRight(int **Maze, PPOINT_t pPlayerPos, int SIZE_X) {
-	//오른쪽으로 갈수록 x값이 커지니까 x+1
-	if (pPlayerPos->x + 1 < SIZE_X-1) {
-		//벽인지 아닌지 체크
-		if (Maze[pPlayerPos->x+1][pPlayerPos->y] != 0) {//벽이 아니면 간다
-			++pPlayerPos->x;
-		}
-	}
-}
-
-void MoveLeft(int **Maze, PPOINT_t pPlayerPos, int SIZE_X) {
-	//왼쪽으로 갈수록 y값이 커지니까 x-1
-	if (pPlayerPos->x - 1 >= 0) {
-		//벽인지 아닌지 체크
-		if (Maze[pPlayerPos->x-1][pPlayerPos->y] != 0) {//벽이 아니면 간다
-			--pPlayerPos->x;
-		}
-	}
-}
-
-void MovePlayer(int **Maze, PPOINT_t pPlayerPos, char cInput, int SIZE_X, int SIZE_Y) {
-	switch (cInput) {
-	case UP:
-		MoveUp(Maze, pPlayerPos);
-		break;
-	case DOWN:
-		MoveDown(Maze, pPlayerPos, SIZE_Y);
-		break;
-	case LEFT:
-		MoveLeft(Maze, pPlayerPos, SIZE_X);
-		break;
-	case RIGHT:
-		MoveRight(Maze, pPlayerPos, SIZE_X);
-		break;
-	}
-
-}
 
 void printEscape() {
 	//E
@@ -409,7 +353,7 @@ int main() {
 		if (cInput == 'q' || cInput == 'Q')
 			break;
 
-		MovePlayer(map, &tPlayerPos, cInput, SIZE_X, SIZE_Y);
+		
 
 		if ((tPlayerPos).x == SIZE_X - 2 &&(tPlayerPos).y == SIZE_Y - 2) {
 			system("cls");
